@@ -1,28 +1,26 @@
+package log;
+
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 
 import java.io.IOException;
 import java.io.Writer;
 
-public class Csc {
-    private final Sin sin;
+public class Log {
+    private final Ln ln;
+    private final int base;
 
-    public Csc() {
-        this.sin = new Sin();
+    public Log(Ln ln, int base) {
+        this.ln = ln;
+        this.base = base;
     }
 
-    public Csc(Sin sin) {
-        this.sin = sin;
-    }
-
-    public double csc(double x, double eps) {
-        double sinVal = sin.sin(x, eps);
-        if (Double.isNaN(sinVal)) return Double.NaN;
-        return 1 / sinVal;
+    public double log(double b, double eps) {
+        return ln.ln(b, eps) / ln.ln(base, eps);
     }
 
     public double writeResToCSV(double x, double eps, Writer out) {
-        double res = csc(x, eps);
+        double res = log(x, eps);
         try (CSVPrinter printer = CSVFormat.DEFAULT.print(out)) {
             printer.printRecord(x, res);
         } catch (IOException e) {

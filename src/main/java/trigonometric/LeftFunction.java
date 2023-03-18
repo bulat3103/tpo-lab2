@@ -1,26 +1,25 @@
-import log.RightFunction;
+package trigonometric;
+
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
-import trigonometric.LeftFunction;
 
 import java.io.IOException;
 import java.io.Writer;
 
-public class Function {
-    private final LeftFunction leftFunction;
-    private final RightFunction rightFunction;
+public class LeftFunction {
+    private final Sec sec;
+    private final Csc csc;
+    private final Sin sin;
 
-    public Function(LeftFunction leftFunction, RightFunction rightFunction) {
-        this.leftFunction = leftFunction;
-        this.rightFunction = rightFunction;
+    public LeftFunction(Sec sec, Csc csc, Sin sin) {
+        this.sec = sec;
+        this.csc = csc;
+        this.sin = sin;
     }
 
     public double system(double x, double eps) {
-        if (x <= 0) {
-            return leftFunction.system(x, eps);
-        } else {
-            return rightFunction.system(x, eps);
-        }
+        return (sec.sec(x, eps) * sec.sec(x, eps) + csc.csc(x, eps))
+                * (sin.sin(x, eps) * sin.sin(x, eps) * sin.sin(x, eps));
     }
 
     public double writeResToCSV(double x, double eps, Writer out) {

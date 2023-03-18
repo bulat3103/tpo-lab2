@@ -1,3 +1,5 @@
+package trigonometric;
+
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 
@@ -7,19 +9,14 @@ import java.io.Writer;
 public class Cos {
     private final Sin sin;
 
-    public Cos() {
-        this.sin = new Sin();
-    }
-
     public Cos(Sin sin) {
         this.sin = sin;
     }
 
     public double cos(double x, double eps) {
         double x2 = x;
-        if (Double.POSITIVE_INFINITY == x || Double.NEGATIVE_INFINITY == x) {
-            return Double.NaN;
-        }
+        if (Double.POSITIVE_INFINITY == x) return Double.POSITIVE_INFINITY;
+        if (Double.NEGATIVE_INFINITY == x) return Double.NaN;
         if (x > Math.PI) {
             while (x > Math.PI) x -= 2 * Math.PI;
         }

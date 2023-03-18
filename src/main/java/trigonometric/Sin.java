@@ -1,3 +1,5 @@
+package trigonometric;
+
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 
@@ -6,7 +8,8 @@ import java.io.Writer;
 
 public class Sin {
     public double sin(double x, double eps) {
-        if (Double.POSITIVE_INFINITY == x || Double.NEGATIVE_INFINITY == x) return Double.NaN;
+        if (Double.POSITIVE_INFINITY == x) return Double.POSITIVE_INFINITY;
+        if (Double.NEGATIVE_INFINITY == x || Double.isNaN(x)) return Double.NaN;
         if (x >= 0) {
             while (x > Math.PI * 2) x -= Math.PI * 2;
         } else if (x < 0) {
