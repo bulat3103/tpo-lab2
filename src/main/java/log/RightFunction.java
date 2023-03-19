@@ -7,6 +7,9 @@ import org.apache.commons.csv.CSVPrinter;
 
 import java.io.IOException;
 import java.io.Writer;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 
 public class RightFunction {
     private final Ln ln;
@@ -29,13 +32,12 @@ public class RightFunction {
                 + (ln.ln(x, eps) - log2.log(x, eps));
     }
 
-    public double writeResToCSV(double x, double eps, Writer out) {
-        double res = system(x, eps);
-        try (CSVPrinter printer = CSVFormat.DEFAULT.print(out)) {
-            printer.printRecord(x, res);
+    public void writeResToCSV(double x, double res, String file) {
+        String text = x + "," + res + "\n";
+        try {
+            Files.write(Paths.get(file), text.getBytes(), StandardOpenOption.APPEND);
         } catch (IOException e) {
-            System.out.println("No such file");
+            System.out.println("Не удалось записать в файл");
         }
-        return res;
     }
 }

@@ -14,26 +14,34 @@ public class CscTest {
     private static final double eps = 0.001;
 
     private final Csc csc = new Csc(TriMocks.sinMock());
+    private static final String file = "C:\\Users\\admin\\IdeaProjects\\tpo-lab2\\src\\main\\resources\\csv\\output\\CscOut.csv";
 
     @ParameterizedTest
     @CsvFileSource(resources = "/csv/input/CscIn.csv")
     public void testTableValues(double value, double expected) {
         double result = csc.csc(value, eps);
         assertEquals(expected, result, delta);
+        csc.writeResToCSV(value, result, file);
     }
 
     @Test
     public void testNanValue() {
-        Assertions.assertEquals(Double.NaN, csc.csc(Double.NaN, eps), delta);
+        double result = csc.csc(Double.NaN, eps);
+        Assertions.assertEquals(Double.NaN, result, delta);
+        csc.writeResToCSV(Double.NaN, result, file);
     }
 
     @Test
     public void testPositiveInfValue() {
-        Assertions.assertEquals(Double.POSITIVE_INFINITY, csc.csc(Double.POSITIVE_INFINITY, eps), delta);
+        double result = csc.csc(Double.POSITIVE_INFINITY, eps);
+        Assertions.assertEquals(Double.POSITIVE_INFINITY, result, delta);
+        csc.writeResToCSV(Double.POSITIVE_INFINITY, result, file);
     }
 
     @Test
     public void testNegativeInfValue() {
-        Assertions.assertEquals(Double.NaN, csc.csc(Double.NEGATIVE_INFINITY, eps), delta);
+        double result = csc.csc(Double.NEGATIVE_INFINITY, eps);
+        Assertions.assertEquals(Double.NaN, result, delta);
+        csc.writeResToCSV(Double.NEGATIVE_INFINITY, result, file);
     }
 }

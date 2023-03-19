@@ -20,6 +20,7 @@ public class LeftFunctionTest {
     private final Sec sec = new Sec(cos);
 
     private LeftFunction leftFunction;
+    private static final String file = "C:\\Users\\admin\\IdeaProjects\\tpo-lab2\\src\\main\\resources\\csv\\output\\LeftFunctionOut.csv";
 
     @ParameterizedTest
     @CsvFileSource(resources = "/csv/input/LeftFunctionIn.csv")
@@ -27,6 +28,7 @@ public class LeftFunctionTest {
         leftFunction = new LeftFunction(secMock, cscMock, sinMock);
         double result = leftFunction.system(value, eps);
         assertEquals(expected, result, delta);
+        leftFunction.writeResToCSV(value, result, file);
     }
 
     @ParameterizedTest
@@ -35,6 +37,7 @@ public class LeftFunctionTest {
         leftFunction = new LeftFunction(sec, cscMock, sinMock);
         double result = leftFunction.system(value, eps);
         assertEquals(expected, result, delta);
+        leftFunction.writeResToCSV(value, result, file);
     }
 
     @ParameterizedTest
@@ -43,6 +46,7 @@ public class LeftFunctionTest {
         leftFunction = new LeftFunction(secMock, csc, sinMock);
         double result = leftFunction.system(value, eps);
         assertEquals(expected, result, delta);
+        leftFunction.writeResToCSV(value, result, file);
     }
 
     @ParameterizedTest
@@ -51,6 +55,7 @@ public class LeftFunctionTest {
         leftFunction = new LeftFunction(secMock, cscMock, sin);
         double result = leftFunction.system(value, eps);
         assertEquals(expected, result, delta);
+        leftFunction.writeResToCSV(value, result, file);
     }
 
     @ParameterizedTest
@@ -59,5 +64,6 @@ public class LeftFunctionTest {
         leftFunction = new LeftFunction(sec, csc, sin);
         double result = leftFunction.system(value, eps);
         assertEquals(expected, result, delta);
+        leftFunction.writeResToCSV(value, result, file);
     }
 }

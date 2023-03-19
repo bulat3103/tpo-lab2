@@ -23,6 +23,7 @@ public class RightFunctionTest {
     private final Log log10 = new Log(ln, 10);
 
     private RightFunction rightFunction;
+    private static final String file = "C:\\Users\\admin\\IdeaProjects\\tpo-lab2\\src\\main\\resources\\csv\\output\\RightFunctionOut.csv";
 
     @ParameterizedTest
     @CsvFileSource(resources = "/csv/input/RightFunctionIn.csv")
@@ -30,6 +31,7 @@ public class RightFunctionTest {
         rightFunction = new RightFunction(lnMock, log2Mock, log3Mock, log5Mock, log10Mock);
         double result = rightFunction.system(value, eps);
         assertEquals(expected, result, delta);
+        rightFunction.writeResToCSV(value, result, file);
     }
 
     @ParameterizedTest
@@ -38,6 +40,7 @@ public class RightFunctionTest {
         rightFunction = new RightFunction(ln, log2Mock, log3Mock, log5Mock, log10Mock);
         double result = rightFunction.system(value, eps);
         assertEquals(expected, result, delta);
+        rightFunction.writeResToCSV(value, result, file);
     }
 
     @ParameterizedTest
@@ -46,6 +49,7 @@ public class RightFunctionTest {
         rightFunction = new RightFunction(lnMock, log2, log3Mock, log5Mock, log10Mock);
         double result = rightFunction.system(value, eps);
         assertEquals(expected, result, delta);
+        rightFunction.writeResToCSV(value, result, file);
     }
 
     @ParameterizedTest
@@ -54,6 +58,7 @@ public class RightFunctionTest {
         rightFunction = new RightFunction(lnMock, log2Mock, log3, log5Mock, log10Mock);
         double result = rightFunction.system(value, eps);
         assertEquals(expected, result, delta);
+        rightFunction.writeResToCSV(value, result, file);
     }
 
     @ParameterizedTest
@@ -62,6 +67,7 @@ public class RightFunctionTest {
         rightFunction = new RightFunction(lnMock, log2Mock, log3Mock, log5, log10Mock);
         double result = rightFunction.system(value, eps);
         assertEquals(expected, result, delta);
+        rightFunction.writeResToCSV(value, result, file);
     }
 
     @ParameterizedTest
@@ -70,6 +76,7 @@ public class RightFunctionTest {
         rightFunction = new RightFunction(lnMock, log2Mock, log3Mock, log5Mock, log10);
         double result = rightFunction.system(value, eps);
         assertEquals(expected, result, delta);
+        rightFunction.writeResToCSV(value, result, file);
     }
 
     @ParameterizedTest
@@ -78,5 +85,6 @@ public class RightFunctionTest {
         rightFunction = new RightFunction(ln, log2, log3, log5, log10);
         double result = rightFunction.system(value, eps);
         assertEquals(expected, result, delta);
+        rightFunction.writeResToCSV(value, result, file);
     }
 }

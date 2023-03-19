@@ -1,6 +1,5 @@
 import log.Ln;
 import log.Log;
-import log.LogMocks;
 import log.RightFunction;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
