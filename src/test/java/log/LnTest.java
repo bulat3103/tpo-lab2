@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -43,5 +44,13 @@ public class LnTest {
         double result = ln.ln(Double.NEGATIVE_INFINITY, eps);
         Assertions.assertEquals(Double.NaN, result, delta);
         ln.writeResToCSV(Double.NEGATIVE_INFINITY, result, file);
+    }
+
+    @ParameterizedTest
+    @ValueSource(doubles = {-1, -5, -10, -100})
+    public void testNegativeValues(double value) {
+        double result = ln.ln(value, eps);
+        Assertions.assertEquals(Double.NaN, result, delta);
+        ln.writeResToCSV(Double.NaN, result, file);
     }
 }

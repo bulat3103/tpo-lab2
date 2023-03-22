@@ -20,6 +20,10 @@ public class LogMocks {
             Mockito.when(lnMock.ln(Double.NaN, eps)).thenReturn(Double.NaN);
             Mockito.when(lnMock.ln(Double.POSITIVE_INFINITY, eps)).thenReturn(Double.POSITIVE_INFINITY);
             Mockito.when(lnMock.ln(Double.NEGATIVE_INFINITY, eps)).thenReturn(Double.NaN);
+            double[] negativeDoubles = new double[]{-1, -5, -10, -100};
+            for (double d : negativeDoubles) {
+                Mockito.when(lnMock.ln(d, eps)).thenReturn(Double.NaN);
+            }
         } catch (IOException e) {
             System.err.println("No such file");
         }

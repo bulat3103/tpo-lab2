@@ -1,9 +1,11 @@
 package log;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -42,5 +44,13 @@ public class Log10Test {
         double result = log10.log(Double.NEGATIVE_INFINITY, eps);
         assertEquals(Double.NaN, result, delta);
         log10.writeResToCSV(Double.NEGATIVE_INFINITY, result, file);
+    }
+
+    @ParameterizedTest
+    @ValueSource(doubles = {-1, -5, -10, -100})
+    public void testNegativeValues(double value) {
+        double result = log10.log(value, eps);
+        Assertions.assertEquals(Double.NaN, result, delta);
+        log10.writeResToCSV(Double.NaN, result, file);
     }
 }

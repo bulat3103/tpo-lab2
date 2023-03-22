@@ -28,7 +28,7 @@ public class RightFunction {
 
     public double system(double x, double eps) {
         return (((log10.log(x, eps) / log2.log(x, eps)) * log2.log(x, eps))
-                * ((log10.log(x, eps) * log3.log(x, eps)) + log5.log(x, eps)))
+                * (log10.log(x, eps) * log3.log(x, eps) + log5.log(x, eps)) - log2.log(x, eps))
                 + (ln.ln(x, eps) - log2.log(x, eps));
     }
 
